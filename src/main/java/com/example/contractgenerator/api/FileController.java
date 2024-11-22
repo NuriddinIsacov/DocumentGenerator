@@ -18,7 +18,7 @@ import java.util.Map;
 public class FileController {
     private final FileService fileService;
 
-    @PostMapping( "/process")
+    @PostMapping( "/generate")
     public ResponseEntity<InputStreamResource> copyAndModifyPdf(@RequestBody Map<String, String> placeholders) throws IOException {
         return fileService.copyAndModifyPdf(placeholders);
     }
