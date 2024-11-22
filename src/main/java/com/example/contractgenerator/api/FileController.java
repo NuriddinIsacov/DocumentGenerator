@@ -22,9 +22,4 @@ public class FileController {
     public ResponseEntity<InputStreamResource> copyAndModifyPdf(@RequestBody Map<String, String> placeholders) throws IOException {
         return fileService.copyAndModifyPdf(placeholders);
     }
-
-    @GetMapping("/download")
-    public ResponseEntity<InputStreamResource> findFile(final String filePath){
-        return fileService.getFileAsStream(filePath);
-    }
 }

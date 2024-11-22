@@ -77,31 +77,6 @@ public class FileService {
         }
     }
 
-    public ResponseEntity<InputStreamResource> getFileAsStream(String filePath) {
-        try {
-            // Faylni olish
-            Path path = Paths.get(filePath);
-            if (!Files.exists(path)) {
-                throw new FileNotFoundException("File not found: " + filePath);
-            }
-
-            // Fayl oqimini ochish
-            InputStream fileInputStream = Files.newInputStream(path);
-            InputStreamResource resource = new InputStreamResource(fileInputStream);
-
-            // Fayl turi
-            String contentType = Files.probeContentType(path);
-
-            // ResponseEntity yaratish
-            return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + path.getFileName().toString())
-                    .contentType(MediaType.parseMediaType(contentType != null ? contentType : "application/octet-stream"))
-                    .contentLength(Files.size(path))
-                    .body(resource);
-        } catch (IOException e) {
-            throw new RuntimeException("Error retrieving file as stream", e);
-        }
-    }
 }
 
 
